@@ -1,30 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="Nametag Auto Print" basedir="." default="dist"
-         xmlns:fx="javafx:com.sun.javafx.tools.ant">
+<project name="school-navigator" default="dist" basedir=".">
     <description>
-        Application that generates gcode files on name tags
+        Application that collects sign up data at the fair
     </description>
 
+    <property name="tomcat-home" value="/apache-tomcat-7.0.57" />
+
     <property name="src.dir" location="src"/>
+    <property name="web.dir" location="web"/>
     <property name="build.dir" location="build"/>
     <property name="dist.dir"  location="dist"/>
+    <property name="lib.dir"  location="lib"/>
 
-    <target name="compile" description="compile the source ">
+    <path id="external.classpath">
+        <fileset dir="${tomcat-home}/bin" includes="*.jar" />
+        <fileset dir="${tomcat-home}/lib" includes="*.jar" />
+    </path>
+
+    <target name="compile" depends="clean" description="compile the source " >
         <tstamp/>
         <mkdir dir="${build.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" target="1.7">
+            <classpath refid="external.classpath"/>
+        </javac>
     </target>
 
-    <target name="dist" depends="compile" description="generate the distribution">
+    <target name="dist" depends="compile" description="generate the distribution" >
         <mkdir dir="${dist.dir}"/>
-        <jar jarfile="${dist.dir}/Robostorm-Sighup.jar" basedir="${build.dir}">
-            <manifest>
-                <attribute name="Main-Class" value="Signup.Main"/>
-            </manifest>
-        </jar>
+        <war destfile="${dist.dir}/SchoolNavigator.war" webxml="${web.dir}/WEB-INF/web.xml">
+            <fileset dir = "${web.dir}">
+                <include name = "**/*.*"/>
+            </fileset>
+
+            <classes dir = "${build.dir}"/>
+        </war>
     </target>
 
-    <target name="clean" description="clean up">
+    <target name="clean">
         <delete dir="${build.dir}"/>
         <delete dir="${dist.dir}"/>
     </target>
