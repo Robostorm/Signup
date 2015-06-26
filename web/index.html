@@ -7,8 +7,9 @@
         <title>Hunderdon County 4-H Robotics Sign Up</title>
         <meta name="description" content="Name Tag Auto Printing"/>
         <meta name="author" content="Ben, Tim"/>
-        <link rel="shortcut icon" href="assets/centrallogo.png">
+        <link rel="shortcut icon" href="assets/logo.png">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/animate.css" rel="stylesheet"/>
         <link href="css/main.css" rel="stylesheet"/>
         
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,7 +20,7 @@
         <![endif]-->
     </head>
     <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -28,7 +29,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand page-scroll" href="#page-top">Hunderdon County 4-H Robotics Sign Up</a>
+                    <a class="navbar-brand page-scroll" href="#page-top"><img id="logo" src="assets/logo.png" alt="4H">
+                        Hunderdon County 4-H Robotics Sign Up</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -41,20 +43,20 @@
         <div class="container main">
             <h1>Hunderdon County 4-H Robotics Sign Up</h1>
             <p class="lead">To be able to sign up to join one of the Hunterdon county 
-                Robotics clubs(Robostorm and Astrobots)<br/><b> you must live in Hunterdon county</b></p>
+                Robotics clubs (Robostorm and Astrobots)<br/><b> you must live in Hunterdon county</b></p>
             <p class="lead">We accept people entering the <b>4th through 12th grades</b></p>
             <section id="form">
                 <div class="jumbotron">
-                    <form id="signUp" onsubmit="return false">
+                    <form id="signUp" action="signUp.html" method="post" onsubmit="">
                         <div class="form-group">
-                            <label for="parent-name">Parent's Name</label>
-                            <input type="text" class="form-control form-input" id="parent-name" name="parent-name"/>
+                            <label for="parentName">Parent's Name</label>
+                            <input type="text" class="form-control form-input" id="parentName" name="parentName"/>
                             <label for="phone">Phone number</label>
-                            <input type="text" class="form-control form-input" id="phone" name="phone-number"/>
+                            <input type="text" class="form-control form-input" id="phone" name="phone"/>
                             <label for="email">Email address</label>
                             <input type="text" class="form-control form-input" id="email" name="email"/>
-                            <label for="kid-name">Kid's name</label>
-                            <input type="text" class="form-control form-input" id="kid-name" name="kid-name"/>
+                            <label for="kidName">Kid's name</label>
+                            <input type="text" class="form-control form-input" id="kidName" name="kidName"/>
                             <label for="age">Kid's age</label>
                             <input type="text" class="form-control form-input" id="age" name="age"/>
                             <label for="grade">Grade entering in fall</label>
@@ -62,8 +64,7 @@
                             <label for="comments">Comments</label>
                             <input type="text" class="form-control form-input" id="comments" name="comments"/>
                         </div>
-                        <button type="button" class="btn btn-info" id="preview">Preview</button>
-                        <button type="button" class="btn btn-success" id="sumbit">Submit</button>
+                        <button type="submit" class="btn btn-success" id="sumbit">Submit</button>
                     </form>
                 </div>
             </section>
@@ -76,6 +77,7 @@
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="js/jquery.easing.min.js"></script>
         <script src="js/scrolling-nav.js"></script>
+        <script src="js/bootstrap-notify.min.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

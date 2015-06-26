@@ -1,67 +1,49 @@
-var $start;
-var $end;
-
-function loadRooms() {
-    $.getJSON("js/rooms.json", function(data) {
-        var rooms = data;
-    });
-}
-
-function getData(f) {
-    $.ajax({url: "navigator.html",
-        data: {
-            "start": $('#start').val(),
-            "end": $('#end').val()
-        },
-        success: function (data, textStatus, jqXHR) {
-            console.log(data);
-            f(data);
+function inputCheck() {
+    $('#signUp :input').each(function(){
+        if($(this).val() === "" ) {
+            console.log($(this).val());
+            return false;
         }
     });
+    return true;
 }
 
-function scroll(id) {
-    $('html, body').stop().animate({
-                scrollTop: $($('a[href=' + id +']').attr('href')).offset().top
-            }, 1500, 'easeInOutExpo');
-}
-
-function preview() {
-    var name = $('#name').val();
-        $.ajax({url: "preview.html",
-            data: {
-                "name": name
-            },
-            statusCode: {
-                400: function () {
-                    console.log("Invalid request made for preview image");
-                 },
-                 404: function () {
-                    console.log("Request for preview image could not be made");
-                 },
-                 500: function() {
-                     console.log("Internal server error occued while maling request for preview image");
-                 }
-            },
-            success: function (data) {
-                console.log(data);
-                var response = jQuery.parseJSON(data);
-                if(response.code === 0) {
-                    $('#preview-image').attr('src', response.image);
-                } else {
-                    console.log(response.error);
-                }
-            }
-        });
+function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+    return null;
 }
 
 $(document).ready(function() {
-    
     $('#toTop').click(function() {
         scroll("#page-top");
     });
     
-    $('#preview').click(function() {
-        preview();
-    });
+    var status = getUrlParameter('status');
+    if(status !== null) {
+        if(status === "success") {
+            $.notify({
+                message: 'Successfuly submited' 
+            },{
+                type: 'success',
+                delay: '5000'
+            });
+        } else if (status === "failed") {
+            $.notify({
+                message: 'Failed to submit' 
+            },{
+                type: 'danger',
+                delay: '5000'
+            });
+        }
+    }
 });

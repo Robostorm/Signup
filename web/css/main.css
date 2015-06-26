@@ -40,3 +40,17 @@ html {
     padding-top: 10px;
 }
 
+.navbar-default {
+    background-color: #003300;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #999999;
+}
+
+#logo {
+    max-width:40px;
+    margin-top: -9px;
+    margin-right: 10px;
+    float: left;
+}
