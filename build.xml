@@ -19,14 +19,14 @@
     <target name="compile" depends="clean" description="compile the source " >
         <tstamp/>
         <mkdir dir="${build.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" target="1.7">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" target="1.7" source="1.7">
             <classpath refid="external.classpath"/>
         </javac>
     </target>
 
     <target name="dist" depends="compile" description="generate the distribution" >
         <mkdir dir="${dist.dir}"/>
-        <war destfile="${dist.dir}/SchoolNavigator.war" webxml="${web.dir}/WEB-INF/web.xml">
+        <war destfile="${dist.dir}/SignUp.war" webxml="${web.dir}/WEB-INF/web.xml">
             <fileset dir = "${web.dir}">
                 <include name = "**/*.*"/>
             </fileset>
